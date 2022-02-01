@@ -34,12 +34,10 @@ pub fn main() {
     // graphemes of the alphabet, interning this will simply 
     // perform a lookup
     let little_x = "x";
-    let little_x_key = lexicon.intern(little_x);
-    assert_eq!(little_x, lowercase_x);
+    let little_x_key = lexicon.intern(little_x);    
 
     let big_x = "X";
     let big_x_key = lexicon.intern(big_x);
-    assert_eq!(big_x, uppercase_x);
 
     // let's store something new
     let a_word = "meowdy, world!";
@@ -50,11 +48,14 @@ pub fn main() {
     // we can use the `lookup` method, which returns a static
     // reference to a string slice
     let lowercase_x = lexicon.lookup(sym);
+    assert_eq!(little_x, lowercase_x);
     
     // the lexicon also has an implementation for `std::ops::Index<Sym>` 
     // allowing for array index syntax. HOWEVER, this needs to be stored
     // as a reference, as `str` is not sized.
     let uppercase_x = &lexicon[big_x_key];
+    assert_eq!(big_x, uppercase_x);
+    
     let greeting = &lexicon[a_words_key];
 
     println!("Cats in Texas say \"{}\"", greeting)
