@@ -142,5 +142,28 @@ impl std::ops::Index<Sym> for Lexicon {
     }
 }
 
+pub fn init_with_alphabet() -> Lexicon {
+    // the `Default` trait is automatically derived and
+    // does not contain any stored data.
+    let mut lexicon = Lexicon::default();
+    for c in ('a'..='z').chain('A'..='Z') {
+        lexicon.intern(&*c.to_string());
+    }
+    lexicon
+}
+
 #[cfg(test)]
-mod tests {}
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_init_lexicon_with_alphas() {
+        let lexicon = init_with_alphabet();
+
+        let zero: Sym = 0.into();
+        let one: Sym = 1.into();
+        assert_eq!(&lexicon[zero], "a");
+        assert_eq!(lexicon.lookup(one), "b");
+        assert_eq!(lexicon.lookup(26.into()), "A")
+    }
+}
