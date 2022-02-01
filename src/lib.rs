@@ -68,7 +68,7 @@ pub trait Interner {
 ///
 /// Note that the interned string slice itself is stored as the `key`, while
 /// the client effectively uses the hashmap's entry value as the *value*.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Lexicon {
     map: HashMap<&'static str, Sym>,
     vec: Vec<&'static str>,
@@ -91,6 +91,8 @@ impl Lexicon {
         }
     }
 
+    /// Stores a string slice in the interner, returning the `Sym` item
+    /// which can be used to retrieve the stored string.
     pub fn intern(&mut self, string: &str) -> Sym {
         if let Some(&id) = self.map.get(string) {
             return id;
