@@ -134,11 +134,14 @@ impl Lexicon {
     }
 }
 
-impl std::ops::Index<Sym> for Lexicon {
+impl<S> std::ops::Index<S> for Lexicon
+where
+    S: Symbolic,
+{
     type Output = str;
 
-    fn index(&self, index: Sym) -> &Self::Output {
-        self.lookup(index)
+    fn index(&self, index: S) -> &Self::Output {
+        self.lookup(index.get_sym())
     }
 }
 
