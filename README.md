@@ -8,7 +8,7 @@ Suppose we want to intern the letters of the alphabet (both uppercase and lowerc
 // the interner
 use lexicon::Lexicon;
 // newtype wrapper around `u32`, used to index `Lexicon`
-use lexicon::Sym;
+use lexicon::Symbol;
 // helper trait to aid in extracting a contained `Sym` value for 
 // data structures holding data representing strings
 use lexicon::Symbolic;
