@@ -76,7 +76,7 @@ struct Lexicon {
 impl Lexicon {
     /// Initial value just randomly guessed.
     /// This could/should maybe be optimized later.
-    pub const BASE_CAPACITY: usize = 100;
+    pub const BASE_CAPACITY: usize = 64;
 
     pub fn with_capacity(cap: usize) -> Self {
         let cap = cap.next_power_of_two();
